@@ -71,7 +71,7 @@ function CalendarioPage() {
 
       <Panel
         titulo={vista === "dia" ? formatDate(`2026-09-${String(dia).padStart(2, "0")}`) : "Septiembre 2026"}
-        descripcion={vista === "semana" ? `Semana del ${semanaInicio} de septiembre` : undefined}
+        {...(vista === "semana" ? { descripcion: `Semana del ${semanaInicio} de septiembre` } : {})}
       >
         <div className="flex items-center gap-2 border-b border-border px-5 py-3">
           <Button

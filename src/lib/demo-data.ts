@@ -343,10 +343,10 @@ const TURNOS: Record<string, ScheduleShift> = {
 export const schedules: Schedule[] = employees.slice(0, 12).map((e, i) => ({
   empleadoId: e.id,
   dias: [0, 1, 2, 3, 4, 5, 6].map((d) => {
-    if (d >= 5) return TURNOS.libre!;
-    if (i % 4 === 1) return TURNOS.tarde!;
-    if (i % 4 === 2) return TURNOS.partido!;
-    return TURNOS.manana!;
+    if (d >= 5) return TURNOS['libre']!;
+    if (i % 4 === 1) return TURNOS['tarde']!;
+    if (i % 4 === 2) return TURNOS['partido']!;
+    return TURNOS['manana']!;
   }),
 }));
 

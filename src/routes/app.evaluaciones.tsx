@@ -150,7 +150,7 @@ function EvaluacionesPage() {
           </div>
         </Panel>
 
-        <Panel titulo="Última evaluación" descripcion={empMap.get(completadas[0]?.empleadoId ?? "")?.nombre}>
+        <Panel titulo="Última evaluación" descripcion={empMap.get(completadas[0]?.empleadoId ?? "")?.nombre ?? "Sin datos"}>
           <div className="h-72 p-5">
             {completadas[0] ? (
               <ResponsiveContainer width="100%" height="100%">
