@@ -15,6 +15,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAusenciasRouteImport } from './routes/app.ausencias'
 import { Route as AppCalendarioRouteImport } from './routes/app.calendario'
+import { Route as AppComunicacionesRouteImport } from './routes/app.comunicaciones'
 import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
 import { Route as AppEvaluacionesRouteImport } from './routes/app.evaluaciones'
 import { Route as AppFichajeRouteImport } from './routes/app.fichaje'
@@ -52,6 +53,11 @@ const AppAusenciasRoute = AppAusenciasRouteImport.update({
 const AppCalendarioRoute = AppCalendarioRouteImport.update({
   id: '/calendario',
   path: '/calendario',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppComunicacionesRoute = AppComunicacionesRouteImport.update({
+  id: '/comunicaciones',
+  path: '/comunicaciones',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDocumentosRoute = AppDocumentosRouteImport.update({
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/calendario': typeof AppCalendarioRoute
+  '/app/comunicaciones': typeof AppComunicacionesRoute
   '/app/documentos': typeof AppDocumentosRoute
   '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/calendario': typeof AppCalendarioRoute
+  '/app/comunicaciones': typeof AppComunicacionesRoute
   '/app/documentos': typeof AppDocumentosRoute
   '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/calendario': typeof AppCalendarioRoute
+  '/app/comunicaciones': typeof AppComunicacionesRoute
   '/app/documentos': typeof AppDocumentosRoute
   '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ausencias'
     | '/app/calendario'
+    | '/app/comunicaciones'
     | '/app/documentos'
     | '/app/evaluaciones'
     | '/app/fichaje'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ausencias'
     | '/app/calendario'
+    | '/app/comunicaciones'
     | '/app/documentos'
     | '/app/evaluaciones'
     | '/app/fichaje'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ausencias'
     | '/app/calendario'
+    | '/app/comunicaciones'
     | '/app/documentos'
     | '/app/evaluaciones'
     | '/app/fichaje'
@@ -241,6 +253,13 @@ declare module '@tanstack/react-router' {
       path: '/calendario'
       fullPath: '/app/calendario'
       preLoaderRoute: typeof AppCalendarioRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/comunicaciones': {
+      id: '/app/comunicaciones'
+      path: '/comunicaciones'
+      fullPath: '/app/comunicaciones'
+      preLoaderRoute: typeof AppComunicacionesRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/documentos': {
@@ -305,6 +324,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAusenciasRoute: typeof AppAusenciasRoute
   AppCalendarioRoute: typeof AppCalendarioRoute
+  AppComunicacionesRoute: typeof AppComunicacionesRoute
   AppDocumentosRoute: typeof AppDocumentosRoute
   AppEvaluacionesRoute: typeof AppEvaluacionesRoute
   AppFichajeRoute: typeof AppFichajeRoute
@@ -319,6 +339,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAusenciasRoute: AppAusenciasRoute,
   AppCalendarioRoute: AppCalendarioRoute,
+  AppComunicacionesRoute: AppComunicacionesRoute,
   AppDocumentosRoute: AppDocumentosRoute,
   AppEvaluacionesRoute: AppEvaluacionesRoute,
   AppFichajeRoute: AppFichajeRoute,
