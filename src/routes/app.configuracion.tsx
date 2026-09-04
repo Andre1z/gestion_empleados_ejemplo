@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Building2, Moon, Shield, Sun } from "lucide-react";
 import { toast } from "sonner";
 import { DEPARTAMENTOS } from "@/lib/demo-data";
-import { useApp, useEmployeeMap } from "@/lib/store";
+import { useApp } from "@/lib/store";
 import { InitialsAvatar, PageHeader, Panel, StatusPill } from "@/components/app/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,7 +24,6 @@ const ROLES = [
 
 function ConfiguracionPage() {
   const { employees, theme, toggleTheme } = useApp();
-  const empMap = useEmployeeMap();
   const [notif, setNotif] = useState({ email: true, push: true, resumen: false, fichaje: true });
 
   const guardar = (msg: string) => toast.success(msg);
