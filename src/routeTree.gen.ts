@@ -16,6 +16,7 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAusenciasRouteImport } from './routes/app.ausencias'
 import { Route as AppCalendarioRouteImport } from './routes/app.calendario'
 import { Route as AppComunicacionesRouteImport } from './routes/app.comunicaciones'
+import { Route as AppConfiguracionRouteImport } from './routes/app.configuracion'
 import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
 import { Route as AppEvaluacionesRouteImport } from './routes/app.evaluaciones'
 import { Route as AppFichajeRouteImport } from './routes/app.fichaje'
@@ -58,6 +59,11 @@ const AppCalendarioRoute = AppCalendarioRouteImport.update({
 const AppComunicacionesRoute = AppComunicacionesRouteImport.update({
   id: '/comunicaciones',
   path: '/comunicaciones',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConfiguracionRoute = AppConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDocumentosRoute = AppDocumentosRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/calendario': typeof AppCalendarioRoute
   '/app/comunicaciones': typeof AppComunicacionesRoute
+  '/app/configuracion': typeof AppConfiguracionRoute
   '/app/documentos': typeof AppDocumentosRoute
   '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/calendario': typeof AppCalendarioRoute
   '/app/comunicaciones': typeof AppComunicacionesRoute
+  '/app/configuracion': typeof AppConfiguracionRoute
   '/app/documentos': typeof AppDocumentosRoute
   '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/calendario': typeof AppCalendarioRoute
   '/app/comunicaciones': typeof AppComunicacionesRoute
+  '/app/configuracion': typeof AppConfiguracionRoute
   '/app/documentos': typeof AppDocumentosRoute
   '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/app/ausencias'
     | '/app/calendario'
     | '/app/comunicaciones'
+    | '/app/configuracion'
     | '/app/documentos'
     | '/app/evaluaciones'
     | '/app/fichaje'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/app/ausencias'
     | '/app/calendario'
     | '/app/comunicaciones'
+    | '/app/configuracion'
     | '/app/documentos'
     | '/app/evaluaciones'
     | '/app/fichaje'
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/app/ausencias'
     | '/app/calendario'
     | '/app/comunicaciones'
+    | '/app/configuracion'
     | '/app/documentos'
     | '/app/evaluaciones'
     | '/app/fichaje'
@@ -262,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppComunicacionesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/configuracion': {
+      id: '/app/configuracion'
+      path: '/configuracion'
+      fullPath: '/app/configuracion'
+      preLoaderRoute: typeof AppConfiguracionRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/documentos': {
       id: '/app/documentos'
       path: '/documentos'
@@ -325,6 +344,7 @@ interface AppRouteChildren {
   AppAusenciasRoute: typeof AppAusenciasRoute
   AppCalendarioRoute: typeof AppCalendarioRoute
   AppComunicacionesRoute: typeof AppComunicacionesRoute
+  AppConfiguracionRoute: typeof AppConfiguracionRoute
   AppDocumentosRoute: typeof AppDocumentosRoute
   AppEvaluacionesRoute: typeof AppEvaluacionesRoute
   AppFichajeRoute: typeof AppFichajeRoute
@@ -340,6 +360,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppAusenciasRoute: AppAusenciasRoute,
   AppCalendarioRoute: AppCalendarioRoute,
   AppComunicacionesRoute: AppComunicacionesRoute,
+  AppConfiguracionRoute: AppConfiguracionRoute,
   AppDocumentosRoute: AppDocumentosRoute,
   AppEvaluacionesRoute: AppEvaluacionesRoute,
   AppFichajeRoute: AppFichajeRoute,
