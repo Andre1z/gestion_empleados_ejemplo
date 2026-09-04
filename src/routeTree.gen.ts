@@ -10,33 +10,157 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAusenciasRouteImport } from './routes/app.ausencias'
+import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
+import { Route as AppFichajeRouteImport } from './routes/app.fichaje'
+import { Route as AppHorariosRouteImport } from './routes/app.horarios'
+import { Route as AppVacacionesRouteImport } from './routes/app.vacaciones'
+import { Route as AppEmpleadosIndexRouteImport } from './routes/app.empleados.index'
+import { Route as AppEmpleadosIdRouteImport } from './routes/app.empleados.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAusenciasRoute = AppAusenciasRouteImport.update({
+  id: '/ausencias',
+  path: '/ausencias',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDocumentosRoute = AppDocumentosRouteImport.update({
+  id: '/documentos',
+  path: '/documentos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFichajeRoute = AppFichajeRouteImport.update({
+  id: '/fichaje',
+  path: '/fichaje',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHorariosRoute = AppHorariosRouteImport.update({
+  id: '/horarios',
+  path: '/horarios',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppVacacionesRoute = AppVacacionesRouteImport.update({
+  id: '/vacaciones',
+  path: '/vacaciones',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmpleadosIndexRoute = AppEmpleadosIndexRouteImport.update({
+  id: '/empleados/',
+  path: '/empleados/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmpleadosIdRoute = AppEmpleadosIdRouteImport.update({
+  id: '/empleados/$id',
+  path: '/empleados/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/app/ausencias': typeof AppAusenciasRoute
+  '/app/documentos': typeof AppDocumentosRoute
+  '/app/fichaje': typeof AppFichajeRoute
+  '/app/horarios': typeof AppHorariosRoute
+  '/app/vacaciones': typeof AppVacacionesRoute
+  '/app/': typeof AppIndexRoute
+  '/app/empleados/$id': typeof AppEmpleadosIdRoute
+  '/app/empleados/': typeof AppEmpleadosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/app/ausencias': typeof AppAusenciasRoute
+  '/app/documentos': typeof AppDocumentosRoute
+  '/app/fichaje': typeof AppFichajeRoute
+  '/app/horarios': typeof AppHorariosRoute
+  '/app/vacaciones': typeof AppVacacionesRoute
+  '/app': typeof AppIndexRoute
+  '/app/empleados/$id': typeof AppEmpleadosIdRoute
+  '/app/empleados': typeof AppEmpleadosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/app/ausencias': typeof AppAusenciasRoute
+  '/app/documentos': typeof AppDocumentosRoute
+  '/app/fichaje': typeof AppFichajeRoute
+  '/app/horarios': typeof AppHorariosRoute
+  '/app/vacaciones': typeof AppVacacionesRoute
+  '/app/': typeof AppIndexRoute
+  '/app/empleados/$id': typeof AppEmpleadosIdRoute
+  '/app/empleados/': typeof AppEmpleadosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/app/ausencias'
+    | '/app/documentos'
+    | '/app/fichaje'
+    | '/app/horarios'
+    | '/app/vacaciones'
+    | '/app/'
+    | '/app/empleados/$id'
+    | '/app/empleados/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/app/ausencias'
+    | '/app/documentos'
+    | '/app/fichaje'
+    | '/app/horarios'
+    | '/app/vacaciones'
+    | '/app'
+    | '/app/empleados/$id'
+    | '/app/empleados'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/login'
+    | '/app/ausencias'
+    | '/app/documentos'
+    | '/app/fichaje'
+    | '/app/horarios'
+    | '/app/vacaciones'
+    | '/app/'
+    | '/app/empleados/$id'
+    | '/app/empleados/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +172,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ausencias': {
+      id: '/app/ausencias'
+      path: '/ausencias'
+      fullPath: '/app/ausencias'
+      preLoaderRoute: typeof AppAusenciasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/documentos': {
+      id: '/app/documentos'
+      path: '/documentos'
+      fullPath: '/app/documentos'
+      preLoaderRoute: typeof AppDocumentosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/fichaje': {
+      id: '/app/fichaje'
+      path: '/fichaje'
+      fullPath: '/app/fichaje'
+      preLoaderRoute: typeof AppFichajeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/horarios': {
+      id: '/app/horarios'
+      path: '/horarios'
+      fullPath: '/app/horarios'
+      preLoaderRoute: typeof AppHorariosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/vacaciones': {
+      id: '/app/vacaciones'
+      path: '/vacaciones'
+      fullPath: '/app/vacaciones'
+      preLoaderRoute: typeof AppVacacionesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/empleados/': {
+      id: '/app/empleados/'
+      path: '/empleados'
+      fullPath: '/app/empleados/'
+      preLoaderRoute: typeof AppEmpleadosIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/empleados/$id': {
+      id: '/app/empleados/$id'
+      path: '/empleados/$id'
+      fullPath: '/app/empleados/$id'
+      preLoaderRoute: typeof AppEmpleadosIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAusenciasRoute: typeof AppAusenciasRoute
+  AppDocumentosRoute: typeof AppDocumentosRoute
+  AppFichajeRoute: typeof AppFichajeRoute
+  AppHorariosRoute: typeof AppHorariosRoute
+  AppVacacionesRoute: typeof AppVacacionesRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppEmpleadosIdRoute: typeof AppEmpleadosIdRoute
+  AppEmpleadosIndexRoute: typeof AppEmpleadosIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAusenciasRoute: AppAusenciasRoute,
+  AppDocumentosRoute: AppDocumentosRoute,
+  AppFichajeRoute: AppFichajeRoute,
+  AppHorariosRoute: AppHorariosRoute,
+  AppVacacionesRoute: AppVacacionesRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppEmpleadosIdRoute: AppEmpleadosIdRoute,
+  AppEmpleadosIndexRoute: AppEmpleadosIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
