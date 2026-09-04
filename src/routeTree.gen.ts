@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppFichajeRouteImport } from './routes/app.fichaje'
+import { Route as AppHorariosRouteImport } from './routes/app.horarios'
 import { Route as AppEmpleadosIndexRouteImport } from './routes/app.empleados.index'
 import { Route as AppEmpleadosIdRouteImport } from './routes/app.empleados.$id'
 
@@ -42,6 +43,11 @@ const AppFichajeRoute = AppFichajeRouteImport.update({
   path: '/fichaje',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHorariosRoute = AppHorariosRouteImport.update({
+  id: '/horarios',
+  path: '/horarios',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppEmpleadosIndexRoute = AppEmpleadosIndexRouteImport.update({
   id: '/empleados/',
   path: '/empleados/',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/app/fichaje': typeof AppFichajeRoute
+  '/app/horarios': typeof AppHorariosRoute
   '/app/': typeof AppIndexRoute
   '/app/empleados/$id': typeof AppEmpleadosIdRoute
   '/app/empleados/': typeof AppEmpleadosIndexRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/app/fichaje': typeof AppFichajeRoute
+  '/app/horarios': typeof AppHorariosRoute
   '/app': typeof AppIndexRoute
   '/app/empleados/$id': typeof AppEmpleadosIdRoute
   '/app/empleados': typeof AppEmpleadosIndexRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/app/fichaje': typeof AppFichajeRoute
+  '/app/horarios': typeof AppHorariosRoute
   '/app/': typeof AppIndexRoute
   '/app/empleados/$id': typeof AppEmpleadosIdRoute
   '/app/empleados/': typeof AppEmpleadosIndexRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/login'
     | '/app/fichaje'
+    | '/app/horarios'
     | '/app/'
     | '/app/empleados/$id'
     | '/app/empleados/'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/app/fichaje'
+    | '/app/horarios'
     | '/app'
     | '/app/empleados/$id'
     | '/app/empleados'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/login'
     | '/app/fichaje'
+    | '/app/horarios'
     | '/app/'
     | '/app/empleados/$id'
     | '/app/empleados/'
@@ -152,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppFichajeRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/horarios': {
+      id: '/app/horarios'
+      path: '/horarios'
+      fullPath: '/app/horarios'
+      preLoaderRoute: typeof AppHorariosRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/empleados/': {
       id: '/app/empleados/'
       path: '/empleados'
@@ -171,6 +190,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppFichajeRoute: typeof AppFichajeRoute
+  AppHorariosRoute: typeof AppHorariosRoute
   AppIndexRoute: typeof AppIndexRoute
   AppEmpleadosIdRoute: typeof AppEmpleadosIdRoute
   AppEmpleadosIndexRoute: typeof AppEmpleadosIndexRoute
@@ -178,6 +198,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppFichajeRoute: AppFichajeRoute,
+  AppHorariosRoute: AppHorariosRoute,
   AppIndexRoute: AppIndexRoute,
   AppEmpleadosIdRoute: AppEmpleadosIdRoute,
   AppEmpleadosIndexRoute: AppEmpleadosIndexRoute,
