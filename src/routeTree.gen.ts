@@ -15,6 +15,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAusenciasRouteImport } from './routes/app.ausencias'
 import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
+import { Route as AppEvaluacionesRouteImport } from './routes/app.evaluaciones'
 import { Route as AppFichajeRouteImport } from './routes/app.fichaje'
 import { Route as AppHorariosRouteImport } from './routes/app.horarios'
 import { Route as AppTareasRouteImport } from './routes/app.tareas'
@@ -50,6 +51,11 @@ const AppAusenciasRoute = AppAusenciasRouteImport.update({
 const AppDocumentosRoute = AppDocumentosRouteImport.update({
   id: '/documentos',
   path: '/documentos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEvaluacionesRoute = AppEvaluacionesRouteImport.update({
+  id: '/evaluaciones',
+  path: '/evaluaciones',
   getParentRoute: () => AppRoute,
 } as any)
 const AppFichajeRoute = AppFichajeRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/documentos': typeof AppDocumentosRoute
+  '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
   '/app/horarios': typeof AppHorariosRoute
   '/app/tareas': typeof AppTareasRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/documentos': typeof AppDocumentosRoute
+  '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
   '/app/horarios': typeof AppHorariosRoute
   '/app/tareas': typeof AppTareasRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
   '/app/documentos': typeof AppDocumentosRoute
+  '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
   '/app/horarios': typeof AppHorariosRoute
   '/app/tareas': typeof AppTareasRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ausencias'
     | '/app/documentos'
+    | '/app/evaluaciones'
     | '/app/fichaje'
     | '/app/horarios'
     | '/app/tareas'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ausencias'
     | '/app/documentos'
+    | '/app/evaluaciones'
     | '/app/fichaje'
     | '/app/horarios'
     | '/app/tareas'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ausencias'
     | '/app/documentos'
+    | '/app/evaluaciones'
     | '/app/fichaje'
     | '/app/horarios'
     | '/app/tareas'
@@ -219,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDocumentosRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/evaluaciones': {
+      id: '/app/evaluaciones'
+      path: '/evaluaciones'
+      fullPath: '/app/evaluaciones'
+      preLoaderRoute: typeof AppEvaluacionesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/fichaje': {
       id: '/app/fichaje'
       path: '/fichaje'
@@ -267,6 +286,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAusenciasRoute: typeof AppAusenciasRoute
   AppDocumentosRoute: typeof AppDocumentosRoute
+  AppEvaluacionesRoute: typeof AppEvaluacionesRoute
   AppFichajeRoute: typeof AppFichajeRoute
   AppHorariosRoute: typeof AppHorariosRoute
   AppTareasRoute: typeof AppTareasRoute
@@ -279,6 +299,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAusenciasRoute: AppAusenciasRoute,
   AppDocumentosRoute: AppDocumentosRoute,
+  AppEvaluacionesRoute: AppEvaluacionesRoute,
   AppFichajeRoute: AppFichajeRoute,
   AppHorariosRoute: AppHorariosRoute,
   AppTareasRoute: AppTareasRoute,
