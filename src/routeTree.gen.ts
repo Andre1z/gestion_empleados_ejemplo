@@ -14,9 +14,14 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAusenciasRouteImport } from './routes/app.ausencias'
+import { Route as AppCalendarioRouteImport } from './routes/app.calendario'
+import { Route as AppComunicacionesRouteImport } from './routes/app.comunicaciones'
+import { Route as AppConfiguracionRouteImport } from './routes/app.configuracion'
 import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
+import { Route as AppEvaluacionesRouteImport } from './routes/app.evaluaciones'
 import { Route as AppFichajeRouteImport } from './routes/app.fichaje'
 import { Route as AppHorariosRouteImport } from './routes/app.horarios'
+import { Route as AppTareasRouteImport } from './routes/app.tareas'
 import { Route as AppVacacionesRouteImport } from './routes/app.vacaciones'
 import { Route as AppEmpleadosIndexRouteImport } from './routes/app.empleados.index'
 import { Route as AppEmpleadosIdRouteImport } from './routes/app.empleados.$id'
@@ -46,9 +51,29 @@ const AppAusenciasRoute = AppAusenciasRouteImport.update({
   path: '/ausencias',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCalendarioRoute = AppCalendarioRouteImport.update({
+  id: '/calendario',
+  path: '/calendario',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppComunicacionesRoute = AppComunicacionesRouteImport.update({
+  id: '/comunicaciones',
+  path: '/comunicaciones',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConfiguracionRoute = AppConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDocumentosRoute = AppDocumentosRouteImport.update({
   id: '/documentos',
   path: '/documentos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEvaluacionesRoute = AppEvaluacionesRouteImport.update({
+  id: '/evaluaciones',
+  path: '/evaluaciones',
   getParentRoute: () => AppRoute,
 } as any)
 const AppFichajeRoute = AppFichajeRouteImport.update({
@@ -59,6 +84,11 @@ const AppFichajeRoute = AppFichajeRouteImport.update({
 const AppHorariosRoute = AppHorariosRouteImport.update({
   id: '/horarios',
   path: '/horarios',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTareasRoute = AppTareasRouteImport.update({
+  id: '/tareas',
+  path: '/tareas',
   getParentRoute: () => AppRoute,
 } as any)
 const AppVacacionesRoute = AppVacacionesRouteImport.update({
@@ -82,9 +112,14 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
+  '/app/calendario': typeof AppCalendarioRoute
+  '/app/comunicaciones': typeof AppComunicacionesRoute
+  '/app/configuracion': typeof AppConfiguracionRoute
   '/app/documentos': typeof AppDocumentosRoute
+  '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
   '/app/horarios': typeof AppHorariosRoute
+  '/app/tareas': typeof AppTareasRoute
   '/app/vacaciones': typeof AppVacacionesRoute
   '/app/': typeof AppIndexRoute
   '/app/empleados/$id': typeof AppEmpleadosIdRoute
@@ -94,9 +129,14 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
+  '/app/calendario': typeof AppCalendarioRoute
+  '/app/comunicaciones': typeof AppComunicacionesRoute
+  '/app/configuracion': typeof AppConfiguracionRoute
   '/app/documentos': typeof AppDocumentosRoute
+  '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
   '/app/horarios': typeof AppHorariosRoute
+  '/app/tareas': typeof AppTareasRoute
   '/app/vacaciones': typeof AppVacacionesRoute
   '/app': typeof AppIndexRoute
   '/app/empleados/$id': typeof AppEmpleadosIdRoute
@@ -108,9 +148,14 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/app/ausencias': typeof AppAusenciasRoute
+  '/app/calendario': typeof AppCalendarioRoute
+  '/app/comunicaciones': typeof AppComunicacionesRoute
+  '/app/configuracion': typeof AppConfiguracionRoute
   '/app/documentos': typeof AppDocumentosRoute
+  '/app/evaluaciones': typeof AppEvaluacionesRoute
   '/app/fichaje': typeof AppFichajeRoute
   '/app/horarios': typeof AppHorariosRoute
+  '/app/tareas': typeof AppTareasRoute
   '/app/vacaciones': typeof AppVacacionesRoute
   '/app/': typeof AppIndexRoute
   '/app/empleados/$id': typeof AppEmpleadosIdRoute
@@ -123,9 +168,14 @@ export interface FileRouteTypes {
     | '/app'
     | '/login'
     | '/app/ausencias'
+    | '/app/calendario'
+    | '/app/comunicaciones'
+    | '/app/configuracion'
     | '/app/documentos'
+    | '/app/evaluaciones'
     | '/app/fichaje'
     | '/app/horarios'
+    | '/app/tareas'
     | '/app/vacaciones'
     | '/app/'
     | '/app/empleados/$id'
@@ -135,9 +185,14 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/app/ausencias'
+    | '/app/calendario'
+    | '/app/comunicaciones'
+    | '/app/configuracion'
     | '/app/documentos'
+    | '/app/evaluaciones'
     | '/app/fichaje'
     | '/app/horarios'
+    | '/app/tareas'
     | '/app/vacaciones'
     | '/app'
     | '/app/empleados/$id'
@@ -148,9 +203,14 @@ export interface FileRouteTypes {
     | '/app'
     | '/login'
     | '/app/ausencias'
+    | '/app/calendario'
+    | '/app/comunicaciones'
+    | '/app/configuracion'
     | '/app/documentos'
+    | '/app/evaluaciones'
     | '/app/fichaje'
     | '/app/horarios'
+    | '/app/tareas'
     | '/app/vacaciones'
     | '/app/'
     | '/app/empleados/$id'
@@ -200,11 +260,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAusenciasRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/calendario': {
+      id: '/app/calendario'
+      path: '/calendario'
+      fullPath: '/app/calendario'
+      preLoaderRoute: typeof AppCalendarioRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/comunicaciones': {
+      id: '/app/comunicaciones'
+      path: '/comunicaciones'
+      fullPath: '/app/comunicaciones'
+      preLoaderRoute: typeof AppComunicacionesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/configuracion': {
+      id: '/app/configuracion'
+      path: '/configuracion'
+      fullPath: '/app/configuracion'
+      preLoaderRoute: typeof AppConfiguracionRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/documentos': {
       id: '/app/documentos'
       path: '/documentos'
       fullPath: '/app/documentos'
       preLoaderRoute: typeof AppDocumentosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/evaluaciones': {
+      id: '/app/evaluaciones'
+      path: '/evaluaciones'
+      fullPath: '/app/evaluaciones'
+      preLoaderRoute: typeof AppEvaluacionesRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/fichaje': {
@@ -219,6 +307,13 @@ declare module '@tanstack/react-router' {
       path: '/horarios'
       fullPath: '/app/horarios'
       preLoaderRoute: typeof AppHorariosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tareas': {
+      id: '/app/tareas'
+      path: '/tareas'
+      fullPath: '/app/tareas'
+      preLoaderRoute: typeof AppTareasRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/vacaciones': {
@@ -247,9 +342,14 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppAusenciasRoute: typeof AppAusenciasRoute
+  AppCalendarioRoute: typeof AppCalendarioRoute
+  AppComunicacionesRoute: typeof AppComunicacionesRoute
+  AppConfiguracionRoute: typeof AppConfiguracionRoute
   AppDocumentosRoute: typeof AppDocumentosRoute
+  AppEvaluacionesRoute: typeof AppEvaluacionesRoute
   AppFichajeRoute: typeof AppFichajeRoute
   AppHorariosRoute: typeof AppHorariosRoute
+  AppTareasRoute: typeof AppTareasRoute
   AppVacacionesRoute: typeof AppVacacionesRoute
   AppIndexRoute: typeof AppIndexRoute
   AppEmpleadosIdRoute: typeof AppEmpleadosIdRoute
@@ -258,9 +358,14 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppAusenciasRoute: AppAusenciasRoute,
+  AppCalendarioRoute: AppCalendarioRoute,
+  AppComunicacionesRoute: AppComunicacionesRoute,
+  AppConfiguracionRoute: AppConfiguracionRoute,
   AppDocumentosRoute: AppDocumentosRoute,
+  AppEvaluacionesRoute: AppEvaluacionesRoute,
   AppFichajeRoute: AppFichajeRoute,
   AppHorariosRoute: AppHorariosRoute,
+  AppTareasRoute: AppTareasRoute,
   AppVacacionesRoute: AppVacacionesRoute,
   AppIndexRoute: AppIndexRoute,
   AppEmpleadosIdRoute: AppEmpleadosIdRoute,
